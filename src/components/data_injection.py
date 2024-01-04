@@ -5,6 +5,7 @@ import pandas as pd
 import sys
 
 from src.components.data_transformation import DataTransformation
+from src.components.model_traner import ModelTraner
 class DataInjectionConfig:
 
 
@@ -49,9 +50,11 @@ if __name__ == "__main__":
     train_data,test_data=obj.initiate_data_ingection()
     #logging.info(train_data)
     obj2 = DataTransformation()
-    obj2.initiate_data_transformation(train_data_path=train_data,test_data_path=test_data)
+    train_arr,test_arr,file_path = obj2.initiate_data_transformation(train_data_path=train_data,test_data_path=test_data)
+
+    obj3 = ModelTraner()
+    obj3.train_model(train_arr,test_arr)
 
 
-
-
+    
 
