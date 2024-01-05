@@ -23,10 +23,9 @@ def load_object(file_path):
 
     try:
         with open(file_path,'rb') as f:
-            pickle.loads(f)
+            return pickle.load(f)
 
             
     except CustomException as e:
         raise CustomException(e,sys)
 
-    

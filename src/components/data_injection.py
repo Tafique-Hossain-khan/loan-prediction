@@ -45,7 +45,7 @@ class DataInjection:
 
 
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     obj = DataInjection()
     train_data,test_data=obj.initiate_data_ingection()
     #logging.info(train_data)
@@ -54,6 +54,7 @@ if __name__ == "__main__":
 
     obj3 = ModelTraner()
     obj3.train_model(train_arr,test_arr)
+    '''
 
 
     
