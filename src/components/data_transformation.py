@@ -22,7 +22,7 @@ class DataTransformationConfig:
 
 class DataTransformation:
 
-   
+
 
     
         def __init__(self) -> None:
@@ -148,8 +148,9 @@ class DataTransformation:
                 ])
 
                 logging.info("Data Transformation Done!")
+                
 
-                return trnf
+                return trnf,new_df
 
             except CustomException as e :
                     raise CustomException(e,sys)   
@@ -161,21 +162,20 @@ class DataTransformation:
                 train_data = pd.read_csv(train_data_path)
                 test_data = pd.read_csv(test_data_path)
 
-                train_data.drop(columns=['Loan_ID'],axis=1,inplace=True)
-                test_data.drop(columns=['Loan_ID'],axis=1,inplace=True)
-                logging.info(train_data.head(1))
-
                 logging.info('Getting the transformation object')
 
-                preprocessor_obj = self.get_data_transformed_obj(train_data,test_data)
+                preprocessor_obj,new_train_data = self.get_data_transformed_obj(train_data,test_data)
+                new_train_data.drop(columns=['Loan_ID'],axis=1,inplace=True)
+                test_data.drop(columns=['Loan_ID'],axis=1,inplace=True)
+                logging.info(train_data.head(1))
 
                 target_col = ['Loan_Status']
 
                 logging.info('Spliting the data')
                 logging.info(train_data.columns)
 
-                input_feature_train_df = train_data.drop(target_col,axis=1)
-                target_feature_train_df = train_data[target_col]
+                input_feature_train_df = new_train_data.drop(target_col,axis=1)
+                target_feature_train_df = new_train_data[target_col]
 
                 input_feature_test_df = test_data
 
