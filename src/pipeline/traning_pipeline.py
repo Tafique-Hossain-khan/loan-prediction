@@ -24,7 +24,7 @@ if __name__ == "__main__":
         featers = obj4.get_df()
         predict_obj = predictionPipeline()
         predict_obj.predict(featers)
-        logging.info(predict_obj.predict(featers))
+        #logging.info(predict_obj.predict(featers))
 
     except CustomException as e:
         raise CustomException(e,sys)
